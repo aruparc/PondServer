@@ -11,7 +11,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 export function bootstrapApp(app: any) {
     // GLOBAL VARS ======
-    const allowOrigins = process.env.ALLOW_ORIGINS || '';
+    const allowOrigins = process.env.ALLOW_ORIGINS || '*';
 
     // FIX unhandled-rejections errors ------
     process.on("unhandledRejection", function(reason, promise) {
