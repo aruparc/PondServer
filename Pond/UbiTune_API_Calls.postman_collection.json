@@ -1,0 +1,564 @@
+{
+	"info": {
+		"_postman_id": "d97fa6da-de54-4691-a02a-317d8d75766a",
+		"name": "UbiTune_API_Calls",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/v1/ubiTune/setHubRange?userId=BIezuKJ1_r&hubRange=25",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/ubiTune/setHubRange?hubRange=25&spotifyId=BIezuKJ1_r",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"ubiTune",
+						"setHubRange"
+					],
+					"query": [
+						{
+							"key": "hubRange",
+							"value": "25"
+						},
+						{
+							"key": "spotifyId",
+							"value": "BIezuKJ1_r"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/ubiTune/setHubAnchorGenre?userId=BIezuKJ1_r&genre=rock",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/ubiTune/setHubAnchorGenre?genre=rock&spotifyId=BIezuKJ1_r",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"ubiTune",
+						"setHubAnchorGenre"
+					],
+					"query": [
+						{
+							"key": "genre",
+							"value": "rock"
+						},
+						{
+							"key": "spotifyId",
+							"value": "BIezuKJ1_r"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/ubiTune/activateHub?userId=BIezuKJ1_r&currentLocation=39W_676S",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"spotifyId\": \"ndt6v6gmxmgf2eadu0avcew99\",\n\t\"location\": {\n\t\t\"longitude\":\"28\",\n\t\t\"latitude\": \"29\",\n\t\t\"accuracy\": 28\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/ubiTune/activateHub",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"ubiTune",
+						"activateHub"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/ubiTune/deactivateHub?userId=BIezuKJ1_r",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/ubiTune/setHubName?spotifyId=ndt6v6gmxmgf2eadu0avcew99&name=Bagging",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"ubiTune",
+						"setHubName"
+					],
+					"query": [
+						{
+							"key": "spotifyId",
+							"value": "ndt6v6gmxmgf2eadu0avcew99"
+						},
+						{
+							"key": "currentLocation",
+							"value": "39W_676S",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Bagging"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/ubiTune/changeActiveHub?userId=Z9cZVVVv2l&hubId=BIezuKJ1_r",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/ubiTune/changeActiveHub?spotifyId=Z9cZVVVv2l&hubId=BIezuKJ1_r",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"ubiTune",
+						"changeActiveHub"
+					],
+					"query": [
+						{
+							"key": "spotifyId",
+							"value": "Z9cZVVVv2l"
+						},
+						{
+							"key": "hubId",
+							"value": "BIezuKJ1_r"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/ubiTune/storeUserData?spotifyId=-1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/ubiTune/storeUserData?spotifyId=ndt6v6gmxmgf2eadu0avcew99",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"ubiTune",
+						"storeUserData"
+					],
+					"query": [
+						{
+							"key": "spotifyId",
+							"value": "ndt6v6gmxmgf2eadu0avcew99"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/ubiTune/findNearbyHubs",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"spotifyId\": \"ndt6v6gmxmgf2eadu0avcew99\",\n\t\"location\": {\n\t\t\"longitude\":\"28\",\n\t\t\"latitude\": \"29\",\n\t\t\"accuracy\": 28\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/ubiTune/findNearbyHubs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"ubiTune",
+						"findNearbyHubs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://35.231.156.227/feedme/get_user_data/?spotify_id=murfyslaw3",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"spotify_id\": \"murfyslaw3\"\r\n}"
+				},
+				"url": {
+					"raw": "http://35.231.156.227/feedme/delete_hub/?",
+					"protocol": "http",
+					"host": [
+						"35",
+						"231",
+						"156",
+						"227"
+					],
+					"path": [
+						"feedme",
+						"delete_hub",
+						""
+					],
+					"query": [
+						{
+							"key": "spotifyId",
+							"value": "ndt6v6gmxmgf2eadu0avcew99",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://35.231.156.227/feedme/refresh_token/?id=ndt6v6gmxmgf2eadu0avcew99",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"khushman.patel\"\n}"
+				},
+				"url": {
+					"raw": "http://35.231.156.227/feedme/refresh_token/?spotify_id=ndt6v6gmxmgf2eadu0avcew99",
+					"protocol": "http",
+					"host": [
+						"35",
+						"231",
+						"156",
+						"227"
+					],
+					"path": [
+						"feedme",
+						"refresh_token",
+						""
+					],
+					"query": [
+						{
+							"key": "spotify_id",
+							"value": "ndt6v6gmxmgf2eadu0avcew99"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.spotify.com/v1/me/player/play",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer BQBSXIiOKdsL3UhC9kTbShFwZke-m23fpqQZKhyix_b-yNXPv-JUVEimht90JcbaQK7nZqFW44U2HuM8717gOJKl28CDEEC4Ohsv2r-OaeA6oPcVUYogG7CT_UuhPESTN4Jkzds6XHj59zrsbPkJ2H6WsRPurG_kXxfIpCAAwfb7-XowFrDIFoyKLuDqBPWzWTGeYvItsw6r2e0OzFtkGjqJA1RViUjBCCZo",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"context_uri\": \"spotify:user:ndt6v6gmxmgf2eadu0avcew99:playlist:06vooPTH7vKNrLqLgzx0z0\"\r\n}"
+				},
+				"url": {
+					"raw": "https://api.spotify.com/v1/me/player/play",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						"player",
+						"play"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.spotify.com/v1/recommendations?market=US&seed_genres=pop&min_energy=0.4&min_popularity=50",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer BQADPff4YBrTnMtaq1pxe90s-pMb7oljg17p1ql4JTovtP3uUGpcj7xwt593TgpVIMZao6VaSRWCpZQzSmKDijT2MU7I_kE1xj0ci4t4ycT3QnPm5CoZPzxTsGXwaha226vwyoW8QeNKgrKedrI6kAA8UefGc3VE3SyL8hTc5mRz-C485BhVa2VVWt5R8AQJAAfhZduM08cWJurINpVvsLgSmi-VTLuSuEXc-v86pg",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"UbiTune\",\n    \"description\": \"Your crowdsourced playlist from the UbiTuners around you.\",\n    \"public\": false,\n    \"collaborative\": true\n}"
+				},
+				"url": {
+					"raw": "https://api.spotify.com/v1/recommendations?market=US&seed_genres=rap&min_energy=0.4&min_popularity=50",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"recommendations"
+					],
+					"query": [
+						{
+							"key": "market",
+							"value": "US"
+						},
+						{
+							"key": "seed_genres",
+							"value": "rap"
+						},
+						{
+							"key": "min_energy",
+							"value": "0.4"
+						},
+						{
+							"key": "min_popularity",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.spotify.com/v1/playlists/06vooPTH7vKNrLqLgzx0z0/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer BQD70BCyUtq2DS6RmIYBRYn138jslL788VIzVjIXTZlqTr7gBiV62udnipc4SiDTsL1eZMJ3e1BZ5b7ntaRX1BJI-BlBYhgR40YwFdngZMbHHMoiDZlkn33F61ui4mI9MRtZFdoUZcRwazITzy1YcgxbQZDiwbD8OfKe8HbqlxyqG6L9QMUepflc8J9oPPrVx9ScsP9dhSTiHjQVVF9M4k0KfOCIsd-MUU4",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"uris\": [\"spotify:track:0kHyKhJMukHEPfeh8s7rdM\"]\n}"
+				},
+				"url": {
+					"raw": "https://api.spotify.com/v1/playlists/06vooPTH7vKNrLqLgzx0z0/tracks",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"playlists",
+						"06vooPTH7vKNrLqLgzx0z0",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.spotify.com/v1/users/ndt6v6gmxmgf2eadu0avcew99/playlists",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer BQD70BCyUtq2DS6RmIYBRYn138jslL788VIzVjIXTZlqTr7gBiV62udnipc4SiDTsL1eZMJ3e1BZ5b7ntaRX1BJI-BlBYhgR40YwFdngZMbHHMoiDZlkn33F61ui4mI9MRtZFdoUZcRwazITzy1YcgxbQZDiwbD8OfKe8HbqlxyqG6L9QMUepflc8J9oPPrVx9ScsP9dhSTiHjQVVF9M4k0KfOCIsd-MUU4",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"UbiTune\",\n    \"description\": \"Your crowdsourced playlist from the UbiTuners around you.\",\n    \"public\": false,\n    \"collaborative\": true\n}"
+				},
+				"url": {
+					"raw": "https://api.spotify.com/v1/users/ndt6v6gmxmgf2eadu0avcew99/playlists",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"users",
+						"ndt6v6gmxmgf2eadu0avcew99",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://b3e1a751.ngrok.io/api/v1/ubiTune/findNearbyHubs",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"spotifyId\": \"ndt6v6gmxmgf2eadu0avcew99\",\n\t\"location\": {\n\t\t\"longitude\":\"28\",\n\t\t\"latitude\": \"29\",\n\t\t\"accuracy\": 28\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://b3e1a751.ngrok.io/api/v1/ubiTune/findNearbyHubs",
+					"protocol": "http",
+					"host": [
+						"b3e1a751",
+						"ngrok",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ubiTune",
+						"findNearbyHubs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
