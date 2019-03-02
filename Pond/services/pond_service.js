@@ -24,7 +24,7 @@ var PondService = /** @class */ (function () {
                     else {
                         //user has not asked for a match for that date yet
                         //return empty
-                        return [];
+                        return {};
                     }
                 });
             }
