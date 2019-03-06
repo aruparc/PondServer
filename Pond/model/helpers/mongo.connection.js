@@ -13,7 +13,7 @@ var MongoConnection = /** @class */ (function () {
     }
     MongoConnection.prototype.connect = function () {
         var _this = this;
-        var connectString = this.mongoConfig.connection + "/" + this.mongoConfig.database + "?ssl=" + this.mongoConfig.useSsl;
+        var connectString = this.mongoConfig.connection + "/" + this.mongoConfig.database + "?retryWrites=true";
         var connectWithRetry = function () {
             _this._connection = mongoose.connect(connectString, { useNewUrlParser: true })
                 .then(function (connectedConnection) {
