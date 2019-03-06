@@ -14,7 +14,7 @@ var DatabaseSingleton = /** @class */ (function () {
             //connection: process.env.MongoDbConnection,
             //database: process.env.MongoDbDatabase,
             // connection: "mongodb://localhost:27017",
-            connection: "mongodb+srv://admin:1QIM04sMtPrtMy27@pondcluster-hhnhn.gcp.mongodb.net",
+            connection: "mongodb://admin:1QIM04sMtPrtMy27@pondcluster-shard-00-00-hhnhn.gcp.mongodb.net:27017,pondcluster-shard-00-01-hhnhn.gcp.mongodb.net:27017,pondcluster-shard-00-02-hhnhn.gcp.mongodb.net:27017",
             database: "pond-dev",
             useSsl: false
         };

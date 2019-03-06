@@ -18,7 +18,7 @@ export class MongoConnection {
     }
 
     public connect() {
-        const connectString = `${this.mongoConfig.connection}/${this.mongoConfig.database}?retryWrites=true`;
+        const connectString = `${this.mongoConfig.connection}/${this.mongoConfig.database}?ssl=true&replicaSet=PondCluster-shard-0&authSource=admin&retryWrites=true`;
 
         const connectWithRetry = () => {
             this._connection = mongoose.connect(connectString, { useNewUrlParser: true })
