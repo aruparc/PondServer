@@ -21,7 +21,7 @@ initRoutes(app);
 // STD-RESPONSES ======
 // catch 404 and forward to error handler
 app.use(function(req: any, res: any, next: any) {
-    let err: any = new Error('Not Found');
+    let err: any = new Error('Not Found, Cowboy');
     err['status'] = 404;
     next(err);
 });

@@ -19,9 +19,9 @@ export function bootstrapApp(app: any) {
     });
     // ------
 
-    //app.set('PORT', process.env.PORT || 3000);
-    app.set('PORT', 80);
-    //console.log('PORT', process.env.PORT);
+    app.set('PORT', process.env.PORT || 3000);
+    //app.set('PORT', 80);
+    console.log('PORT', process.env.PORT);
 
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'pug');
