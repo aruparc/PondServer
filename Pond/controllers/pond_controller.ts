@@ -6,6 +6,10 @@ import Response = CommonInterfaces.Response;
 import {PondService} from "../services/pond_service";
 import {ApiResponse, Void} from "./helpers/response";
 
+const upload = require('./helpers/multer');
+
+const singleUpload = upload.single('image');
+
 
 /**
  * @name PondController
@@ -93,6 +97,17 @@ export class PondController {
 
     }
 
+    storePicture(request: any, response: any) {
+        singleUpload(request, response, function(err, some) {
+            if (err) {
+                return response.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}] });
+            }
+
+            return response.json({'imageUrl': request.file.location});
+        });
+
+    }
+
 
     // HELPERS ======
     private static voidHandler(res, promise: Promise<any>): Promise<Response<Void>> {
@@ -117,5 +132,4 @@ export class PondController {
                 return res.json(ApiResponse.Error(err))
             })
     }
-
 }

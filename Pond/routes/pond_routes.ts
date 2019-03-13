@@ -15,5 +15,11 @@ router.put('/participant', (request, response) => pondController.createParticipa
 //Put: for a given date, perform the matching process between participants for that date (needs authentication)
 router.put('/matching', (request, response) => pondController.performMatching(request, response));
 
+//Post: store a profile picture for the user
+router.post('/picture', (request, response) => pondController.storePicture(request, response));
 
 module.exports = router;
+
+//store picture:
+// https://medium.com/@alvenw/how-to-store-images-to-mongodb-with-node-js-fb3905c37e6d
+// https://stackoverflow.com/questions/11442356/storing-some-small-under-1mb-files-with-mongodb-in-nodejs-without-gridfs
