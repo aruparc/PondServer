@@ -1,6 +1,4 @@
 {
-    //"MongoDbConnection": "mongodb://core-user:XD%7DqfrRp%3D6bpdbP%2FJYso@kagmongo.westeurope.cloudapp.azure.com:27021",
-
     "MongoDbConnection": "mongodb://localhost:27017",
     "MongoDbDatabase": "core-dev"
 }
