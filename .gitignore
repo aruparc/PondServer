@@ -54,3 +54,11 @@ buck-out/
 
 # Bundle artifact
 *.jsbundle
+
+Pond/server\.crt
+
+Pond/server\.key
+
+Pond/sslcert/server\.crt
+
+Pond/sslcert/server\.key
