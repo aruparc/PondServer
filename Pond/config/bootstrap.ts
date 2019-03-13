@@ -36,7 +36,7 @@ export function bootstrapApp(app: any) {
     var httpsServer = https.createServer(credentials, app);
 
     //httpServer.listen(80);
-    httpsServer.listen(1443);
+    httpsServer.listen(443);
 
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'pug');
