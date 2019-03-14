@@ -9,8 +9,8 @@ aws.config.update({
     region: 'us-east-1'
 });
 
-console.log('multer - secretAccessKey', config.AWS_SECRET_ACCESS_KEY);
-console.log('multer - accessKeyId', config.AWS_ACCESS_KEY_ID);
+// console.log('multer - secretAccessKey', config.AWS_SECRET_ACCESS_KEY);
+// console.log('multer - accessKeyId', config.AWS_ACCESS_KEY_ID);
 
 const s3 = new aws.S3();
 

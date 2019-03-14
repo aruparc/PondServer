@@ -27,16 +27,16 @@ export function bootstrapApp(app: any) {
     app.set('PORT', process.env.PORT || 3000);
     //app.set('PORT', 80);
     //console.log('PORT', process.env.PORT);
-    var privateKey  = fs.readFileSync('server.key', 'utf8');
-    var certificate = fs.readFileSync('server.crt', 'utf8');
+    // var privateKey  = fs.readFileSync('server.key', 'utf8');
+    // var certificate = fs.readFileSync('server.crt', 'utf8');
 
-    var credentials = {key: privateKey, cert: certificate};
+    // var credentials = {key: privateKey, cert: certificate};
 
     //var httpServer = http.createServer(app);
-    var httpsServer = https.createServer(credentials, app);
+    // var httpsServer = https.createServer(credentials, app);
 
     //httpServer.listen(80);
-    httpsServer.listen(443);
+    // httpsServer.listen(443);
 
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'pug');

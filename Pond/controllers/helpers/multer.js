@@ -23,7 +23,7 @@ var upload = multer({
     storage: multerS3({
         acl: 'public-read',
         s3: s3,
-        bucket: 'bwm-ng-dev',
+        bucket: 'pond-pictures',
         metadata: function (req, file, cb) {
             //cb(null, {fieldName: 'TESTING_METADATA'});
             cb(null, { fieldName: file.fieldname });

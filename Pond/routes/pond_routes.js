@@ -14,6 +14,3 @@ router.put('/matching', function (request, response) { return pondController.per
 //Post: store a profile picture for the user
 router.post('/picture', function (request, response) { return pondController.storePicture(request, response); });
 module.exports = router;
-//store picture:
-// https://medium.com/@alvenw/how-to-store-images-to-mongodb-with-node-js-fb3905c37e6d
-// https://stackoverflow.com/questions/11442356/storing-some-small-under-1mb-files-with-mongodb-in-nodejs-without-gridfs
