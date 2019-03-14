@@ -29,6 +29,25 @@ export class Participant_dao extends BaseDao<IAccount>{
         ));
     }
 
+    updateParticipantPictureURL(userId: String, fileLocation: String) {
+        return this.execute((dbModel) => dbModel.updateMany({
+                userId: userId
+            },
+            { $set: { pictureURL: fileLocation} },
+            { upsert: true },
+            function (err, documents) {
+                return { error: err, affected: documents };
+            },
+            {returnOriginal: false}
+        ));
+    }
+
+    getParticipantPictureURL(userId: any) {
+        return this.execute((dbModel) => dbModel.findOne({userId: userId})).then((participantEntry) => {
+            return participantEntry.pictureURL;
+        });
+    }
+
     getAllParticipants(date: any) {
         return this.execute((dbModel) => dbModel.find({date: date}));
     }
@@ -166,5 +185,4 @@ export class Participant_dao extends BaseDao<IAccount>{
             return userEntry; //returns entry for user
         });
     }*/
-
 }

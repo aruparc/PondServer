@@ -82,12 +82,12 @@ export class PondService {
     }
 
 
-    storePictureURL(fileLocation: any, userId: any) {
-
+    storePictureURL(userId: String, fileLocation: String) {
+        return DatabaseSingleton.Instance.participantDao.updateParticipantPictureURL(userId, fileLocation);
     }
 
-    getPictureURL(userId: any) {
-
+    getPictureURL(userId: String) {
+        return DatabaseSingleton.Instance.participantDao.getParticipantPictureURL(userId);
     }
 
 

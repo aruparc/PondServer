@@ -98,23 +98,27 @@ export class PondController {
     }
 
     storePicture(request: any, response: any) {
-        singleUpload(request, response, function(err, some) {
+        let self = this; // save object reference
+        return singleUpload(request, response, function(err, some) {
             if (err) {
                 return response.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}] });
             }
 
             //store 'imageUrl': request.file.location in mongodb
-            this.pondService.storePictureURL(request.file.location, request.query.userId);
+            self.pondService.storePictureURL(request.query.userId, request.file.location);
+            //self.pondService.storePictureURL(request.query.userId, "testLocation");
 
             return response.json({'imageUrl': request.file.location});
+            //return response.json({'imageUrl': "testLocation"});
         });
     }
 
     getPicture(request: any, response: any) {
         let userId = request.query.userId;
 
-        this.pondService.getPictureURL(userId);
+        let pictureURLPromise = this.pondService.getPictureURL(userId);
 
+        return PondController.payloadHandler(response, pictureURLPromise);
     }
 
 
