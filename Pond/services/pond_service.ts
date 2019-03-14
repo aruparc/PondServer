@@ -82,6 +82,14 @@ export class PondService {
     }
 
 
+    storePictureURL(fileLocation: any, userId: any) {
+
+    }
+
+    getPictureURL(userId: any) {
+
+    }
+
 
 
     //persistent storage: general user data (and statistics)
@@ -355,5 +363,4 @@ export class PondService {
             }
         });
     }*!/*/
-
 }

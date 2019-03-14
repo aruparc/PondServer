@@ -80,9 +80,14 @@ var PondController = /** @class */ (function () {
             if (err) {
                 return response.status(422).send({ errors: [{ title: 'Image Upload Error', detail: err.message }] });
             }
-            //TODO: store 'imageUrl': request.file.location in mongodb
+            //store 'imageUrl': request.file.location in mongodb
+            this.pondService.storePictureURL(request.file.location, request.query.userId);
             return response.json({ 'imageUrl': request.file.location });
         });
+    };
+    PondController.prototype.getPicture = function (request, response) {
+        var userId = request.query.userId;
+        this.pondService.getPictureURL(userId);
     };
     // HELPERS ======
     PondController.voidHandler = function (res, promise) {

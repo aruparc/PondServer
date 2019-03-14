@@ -75,6 +75,10 @@ var PondService = /** @class */ (function () {
             }
         });
     };
+    PondService.prototype.storePictureURL = function (fileLocation, userId) {
+    };
+    PondService.prototype.getPictureURL = function (userId) {
+    };
     return PondService;
 }());
 exports.PondService = PondService;

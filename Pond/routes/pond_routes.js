@@ -13,4 +13,6 @@ router.put('/participant', function (request, response) { return pondController.
 router.put('/matching', function (request, response) { return pondController.performMatching(request, response); });
 //Post: store a profile picture for the user
 router.post('/picture', function (request, response) { return pondController.storePicture(request, response); });
+//Get: return a profile picture for the user id
+router.get('/picture', function (request, response) { return pondController.getPicture(request, response); });
 module.exports = router;
