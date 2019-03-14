@@ -18,4 +18,7 @@ router.put('/matching', (request, response) => pondController.performMatching(re
 //Post: store a profile picture for the user
 router.post('/picture', (request, response) => pondController.storePicture(request, response));
 
+//Get: return a profile picture for the user id
+router.get('/picture', (request, response) => pondController.getPicture(request, response));
+
 module.exports = router;

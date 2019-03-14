@@ -110,6 +110,10 @@ export class PondController {
 
     }
 
+    getPicture(request: any, response: any) {
+
+    }
+
 
     // HELPERS ======
     private static voidHandler(res, promise: Promise<any>): Promise<Response<Void>> {
@@ -134,4 +138,5 @@ export class PondController {
                 return res.json(ApiResponse.Error(err))
             })
     }
+
 }
