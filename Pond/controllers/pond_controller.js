@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // APP IMPORTS
 var pond_service_1 = require("../services/pond_service");
 var response_1 = require("./helpers/response");
+var upload = require('./helpers/multer');
+var singleUpload = upload.single('image');
 /**
  * @name PondController
  *
@@ -72,6 +74,15 @@ var PondController = /** @class */ (function () {
         }
         var matchingPromise = this.pondService.performMatching(authorizationToken, date);
         return PondController.payloadHandler(response, matchingPromise);
+    };
+    PondController.prototype.storePicture = function (request, response) {
+        singleUpload(request, response, function (err, some) {
+            if (err) {
+                return response.status(422).send({ errors: [{ title: 'Image Upload Error', detail: err.message }] });
+            }
+            //TODO: store 'imageUrl': request.file.location in mongodb
+            return response.json({ 'imageUrl': request.file.location });
+        });
     };
     // HELPERS ======
     PondController.voidHandler = function (res, promise) {

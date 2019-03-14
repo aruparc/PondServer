@@ -103,6 +103,8 @@ export class PondController {
                 return response.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}] });
             }
 
+            //TODO: store 'imageUrl': request.file.location in mongodb
+
             return response.json({'imageUrl': request.file.location});
         });
 
