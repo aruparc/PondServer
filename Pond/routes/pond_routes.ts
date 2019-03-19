@@ -15,10 +15,19 @@ router.put('/participant', (request, response) => pondController.createParticipa
 //Put: for a given date, perform the matching process between participants for that date (needs authentication)
 router.put('/matching', (request, response) => pondController.performMatching(request, response));
 
-//Post: store a profile picture for the user
-router.post('/picture', (request, response) => pondController.storePicture(request, response));
+// //Post: store a profile picture for the user
+// router.post('/public/uploads', (request, response) => pondController.storePicture(request, response));
 
-//Get: return a profile picture for the user id
-router.get('/picture', (request, response) => pondController.getPicture(request, response));
+// //Get: return a profile picture for the user id
+// router.get('/public/uploads', (request, response) => pondController.getPicture(request, response));
+
+
+//Post: store a profile picture for the user
+router.post('public/uploads', (req, res) => {
+    res.send('test');
+});
+
+router.post(''public/uploads', (req, res) =>')
+
 
 module.exports = router;

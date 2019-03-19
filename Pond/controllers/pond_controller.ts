@@ -5,10 +5,29 @@ import Response = CommonInterfaces.Response;
 // APP IMPORTS
 import {PondService} from "../services/pond_service";
 import {ApiResponse, Void} from "./helpers/response";
+import { pathToFileURL } from "url";
 
 const upload = require('./helpers/multer');
 
 const singleUpload = upload.single('image');
+
+
+// Variables for file upload
+const multer = require('multer');
+const path = require('path');
+
+// Set storage engine
+const storage = multer.diskStorage({
+    destination: './public/uploads',
+    filename: function(req, file, cb){
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+// Initialize upload
+const uploadengine = multer({
+    storage: storage
+}).single('enter the name of the image divclass from the front end'); 
 
 
 /**
