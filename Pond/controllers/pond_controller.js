@@ -76,18 +76,22 @@ var PondController = /** @class */ (function () {
         return PondController.payloadHandler(response, matchingPromise);
     };
     PondController.prototype.storePicture = function (request, response) {
-        singleUpload(request, response, function (err, some) {
+        var self = this; // save object reference
+        return singleUpload(request, response, function (err, some) {
             if (err) {
                 return response.status(422).send({ errors: [{ title: 'Image Upload Error', detail: err.message }] });
             }
             //store 'imageUrl': request.file.location in mongodb
-            this.pondService.storePictureURL(request.file.location, request.query.userId);
+            self.pondService.storePictureURL(request.query.userId, request.file.location);
+            //self.pondService.storePictureURL(request.query.userId, "testLocation");
             return response.json({ 'imageUrl': request.file.location });
+            //return response.json({'imageUrl': "testLocation"});
         });
     };
     PondController.prototype.getPicture = function (request, response) {
         var userId = request.query.userId;
-        this.pondService.getPictureURL(userId);
+        var pictureURLPromise = this.pondService.getPictureURL(userId);
+        return PondController.payloadHandler(response, pictureURLPromise);
     };
     // HELPERS ======
     PondController.voidHandler = function (res, promise) {

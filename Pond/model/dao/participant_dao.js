@@ -34,6 +34,18 @@ var Participant_dao = /** @class */ (function (_super) {
             return { error: err, affected: documents };
         }, { returnOriginal: false }); });
     };
+    Participant_dao.prototype.updateParticipantPictureURL = function (userId, fileLocation) {
+        return this.execute(function (dbModel) { return dbModel.updateMany({
+            userId: userId
+        }, { $set: { pictureURL: fileLocation } }, { upsert: true }, function (err, documents) {
+            return { error: err, affected: documents };
+        }, { returnOriginal: false }); });
+    };
+    Participant_dao.prototype.getParticipantPictureURL = function (userId) {
+        return this.execute(function (dbModel) { return dbModel.findOne({ userId: userId }); }).then(function (participantEntry) {
+            return participantEntry.pictureURL;
+        });
+    };
     Participant_dao.prototype.getAllParticipants = function (date) {
         return this.execute(function (dbModel) { return dbModel.find({ date: date }); });
     };

@@ -11,6 +11,7 @@ exports.participant_schema = new mongoose_1.Schema({
     userName: String,
     date: Date,
     time: Number,
+    pictureURL: String,
     matched: Boolean
 }, {
     //collection: process.env.MongoDbCollectionAccount,

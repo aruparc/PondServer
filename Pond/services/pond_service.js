@@ -75,9 +75,11 @@ var PondService = /** @class */ (function () {
             }
         });
     };
-    PondService.prototype.storePictureURL = function (fileLocation, userId) {
+    PondService.prototype.storePictureURL = function (userId, fileLocation) {
+        return database_1.DatabaseSingleton.Instance.participantDao.updateParticipantPictureURL(userId, fileLocation);
     };
     PondService.prototype.getPictureURL = function (userId) {
+        return database_1.DatabaseSingleton.Instance.participantDao.getParticipantPictureURL(userId);
     };
     return PondService;
 }());
