@@ -34,8 +34,10 @@ function bootstrapApp(app) {
     // for favicon in /public
     //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
     app.use(logger('dev'));
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json({ limit: '10mb', extended: true }));
+    app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+    //app.use(bodyParser.json());
+    //app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, '../public')));
     app.use(function (req, res, next) {

@@ -13,8 +13,8 @@ var MongoConnection = /** @class */ (function () {
     }
     MongoConnection.prototype.connect = function () {
         var _this = this;
-        var connectString = this.mongoConfig.connection + "/" + this.mongoConfig.database + "?ssl=" + this.mongoConfig.useSsl + "&replicaSet=PondCluster-shard-0&authSource=admin&retryWrites=true";
-        //const connectString = `${this.mongoConfig.connection}/${this.mongoConfig.database}?ssl=${this.mongoConfig.useSsl}`; //use for testing with local mongodb
+        //const connectString = `${this.mongoConfig.connection}/${this.mongoConfig.database}?ssl=${this.mongoConfig.useSsl}&replicaSet=PondCluster-shard-0&authSource=admin&retryWrites=true`;
+        var connectString = this.mongoConfig.connection + "/" + this.mongoConfig.database + "?ssl=" + this.mongoConfig.useSsl; //use for testing with local mongodb
         var connectWithRetry = function () {
             _this._connection = mongoose.connect(connectString, { useNewUrlParser: true })
                 .then(function (connectedConnection) {

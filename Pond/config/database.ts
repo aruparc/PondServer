@@ -24,11 +24,11 @@ export class DatabaseSingleton {
     private mongoDbUserDataConfig:IMongoDBConnectionConfig = {
         //connection: process.env.MongoDbConnection,
         //database: process.env.MongoDbDatabase,
-        //connection: "mongodb://localhost:27017", //use for testing with local mongodb
-        connection: "mongodb://admin:1QIM04sMtPrtMy27@pondcluster-shard-00-00-hhnhn.gcp.mongodb.net:27017,pondcluster-shard-00-01-hhnhn.gcp.mongodb.net:27017,pondcluster-shard-00-02-hhnhn.gcp.mongodb.net:27017",
+        connection: "mongodb://localhost:27017", //use for testing with local mongodb
+        //connection: "mongodb://admin:1QIM04sMtPrtMy27@pondcluster-shard-00-00-hhnhn.gcp.mongodb.net:27017,pondcluster-shard-00-01-hhnhn.gcp.mongodb.net:27017,pondcluster-shard-00-02-hhnhn.gcp.mongodb.net:27017",
         database: "pond-dev",
-        //useSsl: false //use for local testing
-        useSsl: true
+        useSsl: false //use for local testing
+        //useSsl: true
     };
 
     private constructor() {
