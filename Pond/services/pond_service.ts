@@ -90,6 +90,14 @@ export class PondService {
         return DatabaseSingleton.Instance.participantDao.getParticipantPictureURL(userId);
     }
 
+    storePictureString(userId: String, pictureString: String) {
+        return DatabaseSingleton.Instance.participantDao.updateParticipantPictureString(userId, pictureString);
+    }
+
+    getPictureString(userId: String) {
+        return DatabaseSingleton.Instance.participantDao.getParticipantPictureString(userId);
+    }
+
 
 
     //persistent storage: general user data (and statistics)

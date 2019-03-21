@@ -48,6 +48,25 @@ export class Participant_dao extends BaseDao<IAccount>{
         });
     }
 
+    updateParticipantPictureString(userId: String, pictureString: String) {
+        return this.execute((dbModel) => dbModel.updateMany({
+                userId: userId
+            },
+            { $set: { pictureString: pictureString} },
+            { upsert: true },
+            function (err, documents) {
+                return { error: err, affected: documents };
+            },
+            {returnOriginal: false}
+        ));
+    }
+
+    getParticipantPictureString(userId: any) {
+        return this.execute((dbModel) => dbModel.findOne({userId: userId})).then((participantEntry) => {
+            return participantEntry.pictureString;
+        });
+    }
+
     getAllParticipants(date: any) {
         return this.execute((dbModel) => dbModel.find({date: date}));
     }

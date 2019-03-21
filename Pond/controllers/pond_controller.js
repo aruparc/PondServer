@@ -76,22 +76,18 @@ var PondController = /** @class */ (function () {
         return PondController.payloadHandler(response, matchingPromise);
     };
     PondController.prototype.storePicture = function (request, response) {
-        var self = this; // save object reference
-        return singleUpload(request, response, function (err, some) {
-            if (err) {
-                return response.status(422).send({ errors: [{ title: 'Image Upload Error', detail: err.message }] });
-            }
-            //store 'imageUrl': request.file.location in mongodb
-            self.pondService.storePictureURL(request.query.userId, request.file.location);
-            //self.pondService.storePictureURL(request.query.userId, "testLocation");
-            return response.json({ 'imageUrl': request.file.location });
-            //return response.json({'imageUrl': "testLocation"});
-        });
+        //console.log("storePicture ", request);
+        var userId = request.query.userId;
+        //let picString = request.query.picture;
+        var picString = request.body.picture;
+        var pictureStorePromise = this.pondService.storePictureString(userId, picString);
+        return PondController.payloadHandler(response, pictureStorePromise);
     };
     PondController.prototype.getPicture = function (request, response) {
+        //console.log("getPicture ", request);
         var userId = request.query.userId;
-        var pictureURLPromise = this.pondService.getPictureURL(userId);
-        return PondController.payloadHandler(response, pictureURLPromise);
+        var pictureRetrievePromise = this.pondService.getPictureString(userId);
+        return PondController.payloadHandler(response, pictureRetrievePromise);
     };
     // HELPERS ======
     PondController.voidHandler = function (res, promise) {

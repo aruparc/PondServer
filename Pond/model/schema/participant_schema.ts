@@ -11,6 +11,7 @@ export const participant_schema: Schema = new Schema({
     date: Date,
     time: Number,
     pictureURL: String,
+    pictureString: String,
     matched: Boolean
 }, {
     //collection: process.env.MongoDbCollectionAccount,

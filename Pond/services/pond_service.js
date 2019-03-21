@@ -81,6 +81,12 @@ var PondService = /** @class */ (function () {
     PondService.prototype.getPictureURL = function (userId) {
         return database_1.DatabaseSingleton.Instance.participantDao.getParticipantPictureURL(userId);
     };
+    PondService.prototype.storePictureString = function (userId, pictureString) {
+        return database_1.DatabaseSingleton.Instance.participantDao.updateParticipantPictureString(userId, pictureString);
+    };
+    PondService.prototype.getPictureString = function (userId) {
+        return database_1.DatabaseSingleton.Instance.participantDao.getParticipantPictureString(userId);
+    };
     return PondService;
 }());
 exports.PondService = PondService;
