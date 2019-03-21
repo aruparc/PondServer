@@ -30,16 +30,20 @@ var Participant_dao = /** @class */ (function (_super) {
                 userName: userName,
                 date: date,
                 time: time,
-                matched: matched } }, { upsert: true }, function (err, documents) {
+                matched: matched } }, { upsert: true } /*,
+        function (err, documents) {
             return { error: err, affected: documents };
-        }, { returnOriginal: false }); });
+        },
+        {returnOriginal: false}*/); });
     };
     Participant_dao.prototype.updateParticipantPictureURL = function (userId, fileLocation) {
         return this.execute(function (dbModel) { return dbModel.updateMany({
             userId: userId
-        }, { $set: { pictureURL: fileLocation } }, { upsert: true }, function (err, documents) {
+        }, { $set: { pictureURL: fileLocation } }, { upsert: true } /*,
+        function (err, documents) {
             return { error: err, affected: documents };
-        }, { returnOriginal: false }); });
+        },
+        {returnOriginal: false}*/); });
     };
     Participant_dao.prototype.getParticipantPictureURL = function (userId) {
         return this.execute(function (dbModel) { return dbModel.findOne({ userId: userId }); }).then(function (participantEntry) {
@@ -49,9 +53,11 @@ var Participant_dao = /** @class */ (function (_super) {
     Participant_dao.prototype.updateParticipantPictureString = function (userId, pictureString) {
         return this.execute(function (dbModel) { return dbModel.updateMany({
             userId: userId
-        }, { $set: { pictureString: pictureString } }, { upsert: true }, function (err, documents) {
+        }, { $set: { pictureString: pictureString } }, { upsert: true } /*,
+        function (err, documents) {
             return { error: err, affected: documents };
-        }, { returnOriginal: false }); });
+        },
+        {returnOriginal: false}*/); });
     };
     Participant_dao.prototype.getParticipantPictureString = function (userId) {
         return this.execute(function (dbModel) { return dbModel.findOne({ userId: userId }); }).then(function (participantEntry) {

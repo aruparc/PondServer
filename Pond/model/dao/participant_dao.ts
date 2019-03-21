@@ -21,11 +21,11 @@ export class Participant_dao extends BaseDao<IAccount>{
                     date: date,
                     time: time,
                     matched: matched} },
-            { upsert: true },
+            { upsert: true }/*,
             function (err, documents) {
                 return { error: err, affected: documents };
             },
-            {returnOriginal: false}
+            {returnOriginal: false}*/
         ));
     }
 
@@ -34,11 +34,11 @@ export class Participant_dao extends BaseDao<IAccount>{
                 userId: userId
             },
             { $set: { pictureURL: fileLocation} },
-            { upsert: true },
+            { upsert: true }/*,
             function (err, documents) {
                 return { error: err, affected: documents };
             },
-            {returnOriginal: false}
+            {returnOriginal: false}*/
         ));
     }
 
@@ -53,11 +53,11 @@ export class Participant_dao extends BaseDao<IAccount>{
                 userId: userId
             },
             { $set: { pictureString: pictureString} },
-            { upsert: true },
+            { upsert: true }/*,
             function (err, documents) {
                 return { error: err, affected: documents };
             },
-            {returnOriginal: false}
+            {returnOriginal: false}*/
         ));
     }
 
