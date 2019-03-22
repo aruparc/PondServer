@@ -61,6 +61,7 @@ var PondService = /** @class */ (function () {
                                 //set p1.matched:True, p2.matched:True (participantDao or memory?)
                                 participantEntry.matched = true;
                                 otherParticipantEntry.matched = true;
+                                break;
                             }
                         }
                         //if no match found: no match today, continue loop
