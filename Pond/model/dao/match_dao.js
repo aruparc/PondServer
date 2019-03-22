@@ -31,9 +31,11 @@ var Match_dao = /** @class */ (function (_super) {
                 p2: otherParticipantEntry.userId,
                 location: location,
                 p1Name: participantEntry.userName,
-                p2Name: otherParticipantEntry.userName } }, { upsert: true }, function (err, documents) {
+                p2Name: otherParticipantEntry.userName } }, { upsert: true } /*,
+        function (err, documents) {
             return { error: err, affected: documents };
-        }, { returnOriginal: false }); });
+        },
+        {returnOriginal: false}*/); });
     };
     Match_dao.prototype.getSchemaName = function () {
         //return process.env.MongoDbCollectionAccount;

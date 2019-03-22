@@ -22,11 +22,11 @@ export class Match_dao extends BaseDao<IHub>{
                     location: location,
                     p1Name: participantEntry.userName,
                     p2Name: otherParticipantEntry.userName} },
-            { upsert: true },
+            { upsert: true }/*,
             function (err, documents) {
                 return { error: err, affected: documents };
             },
-            {returnOriginal: false}
+            {returnOriginal: false}*/
         ));
     }
 
