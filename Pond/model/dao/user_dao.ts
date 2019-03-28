@@ -27,6 +27,25 @@ export class User_dao extends BaseDao<IAccount>{
         ));
     }
 
+    updateUserInfo(userId: any, userInfo: any) {
+        return this.execute((dbModel) => dbModel.findOneAndUpdate({
+                userId: userId
+            },
+            { $set: {userInfo: userInfo } },
+            { upsert: true }/*,
+            function (err, documents) {
+                return { error: err, affected: documents };
+            },
+            {returnOriginal: false}*/
+        ));
+    }
+
+    getUserInfo(userId: any) {
+        return this.execute((dbModel) => dbModel.findOne({userId: userId})).then((userEntry) => {
+            return userEntry.userInfo;
+        });
+    }
+
     updateUserPictureURL(userId: String, fileLocation: String) {
         return this.execute((dbModel) => dbModel.findOneAndUpdate({
                 userId: userId

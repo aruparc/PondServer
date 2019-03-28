@@ -4,6 +4,27 @@ var database_1 = require("../config/database");
 var PondService = /** @class */ (function () {
     function PondService() {
     }
+    PondService.prototype.createUser = function (userToken, userId, userName, userInfo) {
+        return database_1.DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, userName, userInfo);
+    };
+    PondService.prototype.updateUserInfo = function (userId, userInfo) {
+        return database_1.DatabaseSingleton.Instance.userDao.updateUserInfo(userId, userInfo);
+    };
+    PondService.prototype.getUserInfo = function (userId) {
+        return database_1.DatabaseSingleton.Instance.userDao.getUserInfo(userId);
+    };
+    PondService.prototype.storePictureURL = function (userId, fileLocation) {
+        return database_1.DatabaseSingleton.Instance.userDao.updateUserPictureURL(userId, fileLocation);
+    };
+    PondService.prototype.getPictureURL = function (userId) {
+        return database_1.DatabaseSingleton.Instance.userDao.getUserPictureURL(userId);
+    };
+    PondService.prototype.storePictureString = function (userId, pictureString) {
+        return database_1.DatabaseSingleton.Instance.userDao.updateUserPictureString(userId, pictureString);
+    };
+    PondService.prototype.getPictureString = function (userId) {
+        return database_1.DatabaseSingleton.Instance.userDao.getUserPictureString(userId);
+    };
     PondService.prototype.getMatch = function (userId, date) {
         return database_1.DatabaseSingleton.Instance.matchDao.getMatch(userId, date).then(function (matchEntry) {
             if (matchEntry) {
@@ -30,6 +51,9 @@ var PondService = /** @class */ (function () {
             }
         });
     };
+    PondService.prototype.updateMatchStatus = function (userId, date, status) {
+        return database_1.DatabaseSingleton.Instance.matchDao.updateMatchStatus(userId, date, status);
+    };
     PondService.prototype.createParticipant = function (userToken, userId, userName, date, time) {
         return database_1.DatabaseSingleton.Instance.participantDao.updateParticipant(userToken, userId, userName, date, time, false);
     };
@@ -54,7 +78,9 @@ var PondService = /** @class */ (function () {
                                 //it's a match
                                 //foundMatch = true;
                                 //get a location
-                                var location = "Starbucks in Clough Commons";
+                                var locationOptions = ["Starbucks in Clough Commons", "Auntie Ann's in Student Center", "Subway in Student Center", "Blue Donkey in Student Center", "Panda Express in Student Center", "Burdell's in Student Center", "Chick-fil-A in Student Center"];
+                                var randomNumber = Math.floor(Math.random() * (locationOptions.length - 1));
+                                var location = locationOptions[randomNumber];
                                 //create new match entry with date, time, p1, p2 and location (matchDao)
                                 database_1.DatabaseSingleton.Instance.matchDao.createMatch(date, participantEntry.time, participantEntry, otherParticipantEntry, location);
                                 database_1.DatabaseSingleton.Instance.matchDao.createMatch(date, participantEntry.time, otherParticipantEntry, participantEntry, location);
@@ -76,16 +102,16 @@ var PondService = /** @class */ (function () {
             }
         });
     };
-    PondService.prototype.storePictureURL = function (userId, fileLocation) {
+    PondService.prototype.storePictureURLParticipant = function (userId, fileLocation) {
         return database_1.DatabaseSingleton.Instance.participantDao.updateParticipantPictureURL(userId, fileLocation);
     };
-    PondService.prototype.getPictureURL = function (userId) {
+    PondService.prototype.getPictureURLParticipant = function (userId) {
         return database_1.DatabaseSingleton.Instance.participantDao.getParticipantPictureURL(userId);
     };
-    PondService.prototype.storePictureString = function (userId, pictureString) {
+    PondService.prototype.storePictureStringParticipant = function (userId, pictureString) {
         return database_1.DatabaseSingleton.Instance.participantDao.updateParticipantPictureString(userId, pictureString);
     };
-    PondService.prototype.getPictureString = function (userId) {
+    PondService.prototype.getPictureStringParticipant = function (userId) {
         return database_1.DatabaseSingleton.Instance.participantDao.getParticipantPictureString(userId);
     };
     return PondService;

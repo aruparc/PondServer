@@ -8,6 +8,8 @@ var participant_dao_1 = require("../model/dao/participant_dao");
 var match_dao_1 = require("../model/dao/match_dao");
 var participant_schema_1 = require("../model/schema/participant_schema");
 var match_schema_1 = require("../model/schema/match_schema");
+var user_dao_1 = require("../model/dao/user_dao");
+var user_schema_1 = require("../model/schema/user_schema");
 var DatabaseSingleton = /** @class */ (function () {
     function DatabaseSingleton() {
         this.mongoDbUserDataConfig = {
@@ -27,6 +29,7 @@ var DatabaseSingleton = /** @class */ (function () {
         console.log("_mongoConnection ", this._mongoConnection);
         this._participantDao = new participant_dao_1.Participant_dao(this._mongoConnection, participant_schema_1.participant_schema);
         this._matchDao = new match_dao_1.Match_dao(this._mongoConnection, match_schema_1.match_schema);
+        this._userDao = new user_dao_1.User_dao(this._mongoConnection, user_schema_1.user_schema);
     };
     Object.defineProperty(DatabaseSingleton, "Instance", {
         get: function () {
@@ -46,6 +49,13 @@ var DatabaseSingleton = /** @class */ (function () {
     Object.defineProperty(DatabaseSingleton.prototype, "matchDao", {
         get: function () {
             return this._matchDao;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DatabaseSingleton.prototype, "userDao", {
+        get: function () {
+            return this._userDao;
         },
         enumerable: true,
         configurable: true

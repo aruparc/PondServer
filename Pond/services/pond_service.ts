@@ -10,6 +10,30 @@ export class PondService {
         return DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, userName, userInfo);
     }
 
+    updateUserInfo(userId: any, userInfo: any) {
+        return DatabaseSingleton.Instance.userDao.updateUserInfo(userId, userInfo);
+    }
+
+    getUserInfo(userId: any) {
+        return DatabaseSingleton.Instance.userDao.getUserInfo(userId);
+    }
+
+    storePictureURL(userId: String, fileLocation: String) {
+        return DatabaseSingleton.Instance.userDao.updateUserPictureURL(userId, fileLocation);
+    }
+
+    getPictureURL(userId: String) {
+        return DatabaseSingleton.Instance.userDao.getUserPictureURL(userId);
+    }
+
+    storePictureString(userId: String, pictureString: String) {
+        return DatabaseSingleton.Instance.userDao.updateUserPictureString(userId, pictureString);
+    }
+
+    getPictureString(userId: String) {
+        return DatabaseSingleton.Instance.userDao.getUserPictureString(userId);
+    }
+
     getMatch(userId: any, date: any) {
         return DatabaseSingleton.Instance.matchDao.getMatch(userId, date).then((matchEntry) => {
             if(matchEntry){
@@ -93,24 +117,21 @@ export class PondService {
         });
     }
 
-
-    storePictureURL(userId: String, fileLocation: String) {
+    storePictureURLParticipant(userId: String, fileLocation: String) {
         return DatabaseSingleton.Instance.participantDao.updateParticipantPictureURL(userId, fileLocation);
     }
 
-    getPictureURL(userId: String) {
+    getPictureURLParticipant(userId: String) {
         return DatabaseSingleton.Instance.participantDao.getParticipantPictureURL(userId);
     }
 
-    storePictureString(userId: String, pictureString: String) {
+    storePictureStringParticipant(userId: String, pictureString: String) {
         return DatabaseSingleton.Instance.participantDao.updateParticipantPictureString(userId, pictureString);
     }
 
-    getPictureString(userId: String) {
+    getPictureStringParticipant(userId: String) {
         return DatabaseSingleton.Instance.participantDao.getParticipantPictureString(userId);
     }
-
-
 
     //persistent storage: general user data (and statistics)
     //live database: currently active hubs and their connected users (dictionary userId -> hubId & hub objects: location, list of influencers, playlist)
@@ -383,5 +404,4 @@ export class PondService {
             }
         });
     }*!/*/
-
 }

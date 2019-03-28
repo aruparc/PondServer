@@ -29,7 +29,8 @@ export class PondController {
     // ROUTE HANDLERS ======
 
     createUser(request: any, response: any) {
-        let userToken = request.query.token;
+        //let userToken = request.query.token;
+        let userToken = "000";
         let userId = request.query.userId;
         let userName = request.query.name;
         let userInfo = request.query.info;
@@ -47,13 +48,58 @@ export class PondController {
             return response.json(ApiResponse.Error("Please specify query parameter: userName"));
         }
         else if(userInfo === undefined || userInfo === null){
-            response.statuscode = 400;
-            return response.json(ApiResponse.Error("Please specify query parameter: userInfo"));
+            //response.statuscode = 400;
+            //return response.json(ApiResponse.Error("Please specify query parameter: userInfo"));
+            userInfo = "Someone interesting and new! It's gonna be legendary, yeehaw #PondIsBagging";
         }
 
         let userPromise = this.pondService.createUser(userToken, userId, userName, userInfo);
         return PondController.payloadHandler(response, userPromise);
+    }
 
+    updateUserInfo(request: any, response: any) {
+        let userId = request.query.userId;
+        let userInfo = request.query.info;
+        if(userId === undefined || userId === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: userId"));
+        }
+        else if(userInfo === undefined || userInfo === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: info"));
+        }
+
+        let userInfoPromise = this.pondService.updateUserInfo(userId, userInfo);
+        return PondController.payloadHandler(response, userInfoPromise);
+    }
+
+    getUserInfo(request: any, response: any) {
+        let userId = request.query.userId;
+
+        if(userId === undefined || userId === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: userId"));
+        }
+
+        let userInfoPromise = this.pondService.getUserInfo(userId);
+        return PondController.payloadHandler(response, userInfoPromise);
+    }
+
+    storePicture(request: any, response: any) {
+        //console.log("storePicture ", request);
+        let userId = request.query.userId;
+        let picString = request.body.picture;
+
+        let pictureStorePromise = this.pondService.storePictureString(userId, picString);
+        return PondController.payloadHandler(response, pictureStorePromise);
+    }
+
+    getPicture(request: any, response: any) {
+        //console.log("getPicture ", request);
+        let userId = request.query.userId;
+
+        let pictureRetrievePromise = this.pondService.getPictureString(userId);
+        return PondController.payloadHandler(response, pictureRetrievePromise);
     }
 
     getMatch(request: any, response: any) {
@@ -98,7 +144,8 @@ export class PondController {
     }
 
     createParticipant(request: any, response: any) {
-        let userToken = request.query.token;
+        //let userToken = request.query.token;
+        let userToken = "000";
         let userId = request.query.userId;
         let userName = request.query.name;
         let date = request.query.date;
@@ -147,25 +194,6 @@ export class PondController {
         return PondController.payloadHandler(response, matchingPromise);
 
     }
-
-    storePicture(request: any, response: any) {
-        //console.log("storePicture ", request);
-        let userId = request.query.userId;
-        //let picString = request.query.picture;
-        let picString = request.body.picture;
-
-        let pictureStorePromise = this.pondService.storePictureString(userId, picString);
-        return PondController.payloadHandler(response, pictureStorePromise);
-    }
-
-    getPicture(request: any, response: any) {
-        //console.log("getPicture ", request);
-        let userId = request.query.userId;
-
-        let pictureRetrievePromise = this.pondService.getPictureString(userId);
-        return PondController.payloadHandler(response, pictureRetrievePromise);
-    }
-
 
     // HELPERS ======
     private static voidHandler(res, promise: Promise<any>): Promise<Response<Void>> {

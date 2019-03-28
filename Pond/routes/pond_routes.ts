@@ -6,8 +6,20 @@ const pondController: PondController = new PondController();
 
 
 // REPORTS ROUTES defs
-//Put: create a new user entry for a given userId(along more data attributes)
+//Put: create a new user entry for a given userId (along more data attributes)
 router.put('/user', (request, response) => pondController.createUser(request, response));
+
+//Put: update a user's info for a given userId
+router.put('/user/info', (request, response) => pondController.updateUserInfo(request, response));
+
+//Get: return a user's info for a given userId
+router.get('/user/info', (request, response) => pondController.getUserInfo(request, response));
+
+//Post: store a profile picture for the given userId
+router.post('/user/picture', (request, response) => pondController.storePicture(request, response));
+
+//Get: return a profile picture for the userId
+router.get('/user/picture', (request, response) => pondController.getPicture(request, response));
 
 //Get: return the match for a given userId and date
 router.get('/match', (request, response) => pondController.getMatch(request, response));
@@ -20,11 +32,5 @@ router.put('/participant', (request, response) => pondController.createParticipa
 
 //Put: for a given date, perform the matching process between participants for that date (needs authentication)
 router.put('/matching', (request, response) => pondController.performMatching(request, response));
-
-//Post: store a profile picture for the user
-router.post('/picture', (request, response) => pondController.storePicture(request, response));
-
-//Get: return a profile picture for the user id
-router.get('/picture', (request, response) => pondController.getPicture(request, response));
 
 module.exports = router;

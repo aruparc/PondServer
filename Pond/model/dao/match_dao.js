@@ -31,7 +31,18 @@ var Match_dao = /** @class */ (function (_super) {
                 p2: otherParticipantEntry.userId,
                 location: location,
                 p1Name: participantEntry.userName,
-                p2Name: otherParticipantEntry.userName } }, { upsert: true } /*,
+                p2Name: otherParticipantEntry.userName,
+                p2ArrivalStatus: "On the Way to Meeting You!" } }, { upsert: true } /*,
+        function (err, documents) {
+            return { error: err, affected: documents };
+        },
+        {returnOriginal: false}*/); });
+    };
+    Match_dao.prototype.updateMatchStatus = function (userId, date, status) {
+        return this.execute(function (dbModel) { return dbModel.findOneAndUpdate({
+            p2: userId,
+            date: date
+        }, { $set: { p2ArrivalStatus: status } }, { upsert: true } /*,
         function (err, documents) {
             return { error: err, affected: documents };
         },
