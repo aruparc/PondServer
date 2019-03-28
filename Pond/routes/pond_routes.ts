@@ -6,8 +6,14 @@ const pondController: PondController = new PondController();
 
 
 // REPORTS ROUTES defs
+//Put: create a new user entry for a given userId(along more data attributes)
+router.put('/user', (request, response) => pondController.createUser(request, response));
+
 //Get: return the match for a given userId and date
 router.get('/match', (request, response) => pondController.getMatch(request, response));
+
+//Put: update the status of the participant (arrived yet?)
+router.put('/match/status', (request, response) => pondController.updateMatchStatus(request, response));
 
 //Put: create a new participant entry for a given userId and date (along more data attributes)
 router.put('/participant', (request, response) => pondController.createParticipant(request, response));
