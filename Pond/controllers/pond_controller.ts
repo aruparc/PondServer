@@ -46,6 +46,29 @@ export class PondController {
 
     }
 
+    updateMatchStatus(request: any, response: any) {
+        let userId = request.query.userId;
+        let date = request.query.date;
+        let status = request.query.status;
+
+        if(userId === undefined || userId === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: userId"));
+        }
+        else if(date === undefined || date === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: date"));
+        }
+        else if(status === undefined || status === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: status"));
+        }
+
+        let statusUpdatePromise = this.pondService.updateMatchStatus(userId, date, status);
+        return PondController.payloadHandler(response, statusUpdatePromise);
+
+    }
+
     createParticipant(request: any, response: any) {
         let userToken = request.query.token;
         let userId = request.query.userId;

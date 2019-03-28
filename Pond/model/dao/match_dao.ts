@@ -21,7 +21,8 @@ export class Match_dao extends BaseDao<IHub>{
                     p2: otherParticipantEntry.userId,
                     location: location,
                     p1Name: participantEntry.userName,
-                    p2Name: otherParticipantEntry.userName} },
+                    p2Name: otherParticipantEntry.userName,
+                    p2ArrivalStatus: "On the Way to Meeting You!"} },
             { upsert: true }/*,
             function (err, documents) {
                 return { error: err, affected: documents };
@@ -30,6 +31,19 @@ export class Match_dao extends BaseDao<IHub>{
         ));
     }
 
+    updateMatchStatus(userId: any, date: any, status: string) {
+        return this.execute((dbModel) => dbModel.findOneAndUpdate({
+                p2: userId,
+                date: date
+            },
+            { $set: { p2ArrivalStatus: status} },
+            { upsert: true }/*,
+            function (err, documents) {
+                return { error: err, affected: documents };
+            },
+            {returnOriginal: false}*/
+        ));
+    }
 
     getSchemaName(): string {
         //return process.env.MongoDbCollectionAccount;
@@ -235,5 +249,4 @@ export class Match_dao extends BaseDao<IHub>{
             }
         ));
     }*/
-
 }

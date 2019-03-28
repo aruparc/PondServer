@@ -35,6 +35,10 @@ export class PondService {
 
     }
 
+    updateMatchStatus(userId: any, date: any, status: string) {
+        return DatabaseSingleton.Instance.matchDao.updateMatchStatus(userId, date, status);
+    }
+
     createParticipant(userToken: any, userId: any, userName: any, date: any, time: any) {
         return DatabaseSingleton.Instance.participantDao.updateParticipant(userToken, userId, userName, date, time, false);
     }

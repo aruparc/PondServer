@@ -11,7 +11,8 @@ export const match_schema: Schema = new Schema({
     p2: String,
     location: String,
     p1Name: String,
-    p2Name: String
+    p2Name: String,
+    p2ArrivalStatus: String
 }, {
     //collection: process.env.MongoDbCollectionAccount,
     collection: "MatchSchema",
