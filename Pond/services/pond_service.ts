@@ -63,7 +63,10 @@ export class PondService {
                                 //it's a match
                                 //foundMatch = true;
                                 //get a location
-                                let location = "Starbucks in Clough Commons";
+                                let locationOptions = ["Starbucks in Clough Commons", "Auntie Ann's in Student Center", "Subway in Student Center", "Blue Donkey in Student Center", "Panda Express in Student Center", "Burdell's in Student Center", "Chick-fil-A in Student Center"];
+                                let randomNumber = Math.floor(Math.random() * (locationOptions.length - 1));
+
+                                let location = locationOptions[randomNumber];
                                 //create new match entry with date, time, p1, p2 and location (matchDao)
                                 DatabaseSingleton.Instance.matchDao.createMatch(date, participantEntry.time, participantEntry, otherParticipantEntry, location);
                                 DatabaseSingleton.Instance.matchDao.createMatch(date, participantEntry.time, otherParticipantEntry, participantEntry, location);
@@ -376,4 +379,5 @@ export class PondService {
             }
         });
     }*!/*/
+
 }
