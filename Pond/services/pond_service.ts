@@ -6,6 +6,10 @@ export class PondService {
     constructor() {
     }
 
+    createUser(userToken: any, userId: any, userName: any, userInfo: any) {
+        return DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, userName, userInfo);
+    }
+
     getMatch(userId: any, date: any) {
         return DatabaseSingleton.Instance.matchDao.getMatch(userId, date).then((matchEntry) => {
             if(matchEntry){

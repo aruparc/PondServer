@@ -28,6 +28,34 @@ export class PondController {
 
     // ROUTE HANDLERS ======
 
+    createUser(request: any, response: any) {
+        let userToken = request.query.token;
+        let userId = request.query.userId;
+        let userName = request.query.name;
+        let userInfo = request.query.info;
+
+        if(userToken === undefined || userToken === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: userToken"));
+        }
+        else if(userId === undefined || userId === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: userId"));
+        }
+        else if(userName === undefined || userName === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: userName"));
+        }
+        else if(userInfo === undefined || userInfo === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: userInfo"));
+        }
+
+        let userPromise = this.pondService.createUser(userToken, userId, userName, userInfo);
+        return PondController.payloadHandler(response, userPromise);
+
+    }
+
     getMatch(request: any, response: any) {
         let userId = request.query.userId;
         let date = request.query.date;
@@ -162,5 +190,4 @@ export class PondController {
                 return res.json(ApiResponse.Error(err))
             })
     }
-
 }
