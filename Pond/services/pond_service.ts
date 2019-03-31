@@ -1,5 +1,6 @@
 import {DatabaseSingleton} from "../config/database";
 import {CommonInterfaces} from "../interfaces/commonInterfaces";
+const sendEmail = require("./src/handlers/helpers/send_email_notification");
 
 export class PondService {
 
@@ -101,6 +102,47 @@ export class PondService {
                                 //set p1.matched:True, p2.matched:True (participantDao or memory?)
                                 participantEntry.matched = true;
                                 otherParticipantEntry.matched = true;
+                                let mailOptionsParticipant = {
+                                    from: 'Your Homeboys at Pond',
+                                    to: participantEntry.userId,
+                                    subject: 'You just got matched for lunch! Yeeeehaw!',
+                                    html: '<h1>Get ready for a fun lunch with ' + otherParticipantEntry.userName + '!</h1>' +
+                                    '</div>' +
+                                    '<p>Hey ' + participantEntry.userName + ',</p>' +
+                                    '<p>How is your day going so far? ' +
+                                    'Here is another highlight: Lunch with your Pond match ' + otherParticipantEntry.userName + '. ' +
+                                    'Meet at ' + location + ' at ' + participantEntry.time + '. ' +
+                                    'Please be on-time, you won\'t wanna miss any of that fun!</p>' +
+                                    '<p>Enjoy and Keep Ponding,</p>' +
+                                    '<p>Your friends at Pond</p>' +
+                                    '<p>P.s.</p>' +
+                                    '<p><a href="http://pond--app.herokuapp.com/home">Login here</a></p>' +
+                                    '<p>Did you like your experience? Tell your friends all about it!</p>' +
+                                    '<p>Was something wrong? Tell us all about it!</p>' +
+                                    '<p><a href="https://pondapp.github.io/Landing/">Come Visit the Pond Webpage, just bring a smile :)</a></p>'
+                                };
+                                sendEmail(mailOptionsParticipant);
+
+                                let mailOptionsOtherParticipant = {
+                                    from: 'Your Homeboys at Pond',
+                                    to: otherParticipantEntry.userId,
+                                    subject: 'You just got matched for lunch! Yeeeehaw!',
+                                    html: '<h1>Get ready for a fun lunch with ' + participantEntry.userName + '!</h1>' +
+                                    '</div>' +
+                                    '<p>Hey ' + otherParticipantEntry.userName + ',</p>' +
+                                    '<p>How is your day going so far? + ' +
+                                    'Here is another highlight: Lunch with your Pond match ' + participantEntry.userName + '. ' +
+                                    'Meet at ' + location + ' at ' + otherParticipantEntry.time + '. ' +
+                                    'Please be on-time, you won\'t wanna miss any of that fun!</p>' +
+                                    '<p>Enjoy and Keep Ponding,</p>' +
+                                    '<p>Your friends at Pond</p>' +
+                                    '<p>P.s.</p>' +
+                                    '<p><a href="http://pond--app.herokuapp.com/home">Login here</a></p>' +
+                                    '<p>Did you like your experience? Tell your friends all about it!</p>' +
+                                    '<p>Was something wrong? Tell us all about it!</p>' +
+                                    '<p><a href="https://pondapp.github.io/Landing/">Come Visit the Pond Webpage, just bring a smile :)</a></p>'
+                                };
+                                sendEmail(mailOptionsOtherParticipant);
                                 break;
                             }
                         }
