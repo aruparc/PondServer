@@ -72,8 +72,13 @@ var User_dao = /** @class */ (function (_super) {
         {returnOriginal: false}*/); });
     };
     User_dao.prototype.getUserPictureString = function (userId) {
-        return this.execute(function (dbModel) { return dbModel.findOne({ userId: userId }); }).then(function (participantEntry) {
-            return participantEntry.pictureString;
+        return this.execute(function (dbModel) { return dbModel.findOne({ userId: userId }); }).then(function (userEntry) {
+            return userEntry.pictureString;
+        });
+    };
+    User_dao.prototype.getUserPasswordHash = function (userId) {
+        return this.execute(function (dbModel) { return dbModel.findOne({ userId: userId }); }).then(function (userEntry) {
+            return userEntry.passwordHash;
         });
     };
     User_dao.prototype.getSchemaName = function () {

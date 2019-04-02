@@ -32,6 +32,7 @@ export class PondController {
         //let userToken = request.query.token;
         let userToken = "000";
         let userId = request.query.userId;
+        let password = request.query.password;
         let userName = request.query.name;
         let userInfo = request.query.info;
 
@@ -43,6 +44,10 @@ export class PondController {
             response.statuscode = 400;
             return response.json(ApiResponse.Error("Please specify query parameter: userId"));
         }
+        else if(password === undefined || password === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: password"));
+        }
         else if(userName === undefined || userName === null){
             response.statuscode = 400;
             return response.json(ApiResponse.Error("Please specify query parameter: userName"));
@@ -53,7 +58,7 @@ export class PondController {
             userInfo = "Someone interesting and new! It's gonna be legendary, yeehaw #PondIsBagging";
         }
 
-        let userPromise = this.pondService.createUser(userToken, userId, userName, userInfo);
+        let userPromise = this.pondService.createUser(userToken, userId, password, userName, userInfo);
         return PondController.payloadHandler(response, userPromise);
     }
 
@@ -100,6 +105,14 @@ export class PondController {
 
         let pictureRetrievePromise = this.pondService.getPictureString(userId);
         return PondController.payloadHandler(response, pictureRetrievePromise);
+    }
+
+    loginUser(request: any, response: any) {
+        let userId = request.query.userId;
+        let password = request.query.password;
+
+        let loginPromise = this.pondService.loginUser(userId, password);
+        return PondController.payloadHandler(response, loginPromise);
     }
 
     getMatch(request: any, response: any) {

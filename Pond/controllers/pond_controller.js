@@ -22,6 +22,7 @@ var PondController = /** @class */ (function () {
         //let userToken = request.query.token;
         var userToken = "000";
         var userId = request.query.userId;
+        var password = request.query.password;
         var userName = request.query.name;
         var userInfo = request.query.info;
         if (userToken === undefined || userToken === null) {
@@ -32,6 +33,10 @@ var PondController = /** @class */ (function () {
             response.statuscode = 400;
             return response.json(response_1.ApiResponse.Error("Please specify query parameter: userId"));
         }
+        else if (password === undefined || password === null) {
+            response.statuscode = 400;
+            return response.json(response_1.ApiResponse.Error("Please specify query parameter: password"));
+        }
         else if (userName === undefined || userName === null) {
             response.statuscode = 400;
             return response.json(response_1.ApiResponse.Error("Please specify query parameter: userName"));
@@ -41,7 +46,7 @@ var PondController = /** @class */ (function () {
             //return response.json(ApiResponse.Error("Please specify query parameter: userInfo"));
             userInfo = "Someone interesting and new! It's gonna be legendary, yeehaw #PondIsBagging";
         }
-        var userPromise = this.pondService.createUser(userToken, userId, userName, userInfo);
+        var userPromise = this.pondService.createUser(userToken, userId, password, userName, userInfo);
         return PondController.payloadHandler(response, userPromise);
     };
     PondController.prototype.updateUserInfo = function (request, response) {
@@ -79,6 +84,12 @@ var PondController = /** @class */ (function () {
         var userId = request.query.userId;
         var pictureRetrievePromise = this.pondService.getPictureString(userId);
         return PondController.payloadHandler(response, pictureRetrievePromise);
+    };
+    PondController.prototype.loginUser = function (request, response) {
+        var userId = request.query.userId;
+        var password = request.query.password;
+        var loginPromise = this.pondService.loginUser(userId, password);
+        return PondController.payloadHandler(response, loginPromise);
     };
     PondController.prototype.getMatch = function (request, response) {
         var userId = request.query.userId;

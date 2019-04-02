@@ -15,6 +15,8 @@ router.get('/user/info', function (request, response) { return pondController.ge
 router.post('/user/picture', function (request, response) { return pondController.storePicture(request, response); });
 //Get: return a profile picture for the userId
 router.get('/user/picture', function (request, response) { return pondController.getPicture(request, response); });
+//Get: login the user for the userId and password
+router.get('/user/login', function (request, response) { return pondController.loginUser(request, response); });
 //Get: return the match for a given userId and date
 router.get('/match', function (request, response) { return pondController.getMatch(request, response); });
 //Put: update the status of the participant (arrived yet?)

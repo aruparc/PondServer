@@ -5,7 +5,9 @@ var sendEmail = require("./src/handlers/helpers/send_email_notification");
 var PondService = /** @class */ (function () {
     function PondService() {
     }
-    PondService.prototype.createUser = function (userToken, userId, userName, userInfo) {
+    PondService.prototype.createUser = function (userToken, userId, password, userName, userInfo) {
+        //TODO: hash password and store
+        //let passwordHash =
         return database_1.DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, userName, userInfo);
     };
     PondService.prototype.updateUserInfo = function (userId, userInfo) {
@@ -25,6 +27,13 @@ var PondService = /** @class */ (function () {
     };
     PondService.prototype.getPictureString = function (userId) {
         return database_1.DatabaseSingleton.Instance.userDao.getUserPictureString(userId);
+    };
+    PondService.prototype.loginUser = function (userId, password) {
+        //hash password and compare to stored password hash
+        //let passwordHash =
+        return database_1.DatabaseSingleton.Instance.userDao.getUserPasswordHash(userId).then(function (storedPasswordHash) {
+            //return passwordHash == storedPasswordHash
+        });
     };
     PondService.prototype.getMatch = function (userId, date) {
         return database_1.DatabaseSingleton.Instance.matchDao.getMatch(userId, date).then(function (matchEntry) {

@@ -21,6 +21,9 @@ router.post('/user/picture', (request, response) => pondController.storePicture(
 //Get: return a profile picture for the userId
 router.get('/user/picture', (request, response) => pondController.getPicture(request, response));
 
+//Get: login the user for the userId and password
+router.get('/user/login', (request, response) => pondController.loginUser(request, response));
+
 //Get: return the match for a given userId and date
 router.get('/match', (request, response) => pondController.getMatch(request, response));
 
