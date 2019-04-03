@@ -7,6 +7,7 @@ import {Schema} from "mongoose";
 export const user_schema: Schema = new Schema({
     userToken: String,
     userId: String,
+    passwordHash: Number,
     userName: String,
     userInfo: String,
     pictureURL: String,

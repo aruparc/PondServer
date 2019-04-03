@@ -10,12 +10,13 @@ export class User_dao extends BaseDao<IAccount>{
         return this.execute((dbModel) => dbModel.findOne({userId: userId}));
     }
 
-    updateUser(userToken: any, userId: any, userName: any, userInfo: any) {
+    updateUser(userToken: any, userId: any, passwordHash: any, userName: any, userInfo: any) {
         return this.execute((dbModel) => dbModel.findOneAndUpdate({
                 userId: userId
             },
             { $set: { userToken: userToken,
                     userId: userId,
+                    passwordHash: passwordHash,
                     userName: userName,
                     userInfo: userInfo
                     } },

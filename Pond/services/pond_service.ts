@@ -8,9 +8,18 @@ export class PondService {
     }
 
     createUser(userToken: any, userId: any, password: string, userName: any, userInfo: any) {
-        //TODO: hash password and store
-        //let passwordHash =
-        return DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, userName, userInfo);
+        let passwordHash = this.hashPassword(password);
+        //console.log("createUser passwordHash", passwordHash);
+        return DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, passwordHash, userName, userInfo);
+    }
+
+    loginUser(userId: any, password: string) {
+        //hash password and compare to stored password hash
+        let passwordHash = this.hashPassword(password);
+        return DatabaseSingleton.Instance.userDao.getUserPasswordHash(userId).then((storedPasswordHash) => {
+            //console.log("loginUser comparison", passwordHash == storedPasswordHash);
+            return passwordHash == storedPasswordHash
+        });
     }
 
     updateUserInfo(userId: any, userInfo: any) {
@@ -35,14 +44,6 @@ export class PondService {
 
     getPictureString(userId: String) {
         return DatabaseSingleton.Instance.userDao.getUserPictureString(userId);
-    }
-
-    loginUser(userId: any, password: string) {
-        //hash password and compare to stored password hash
-        //let passwordHash =
-        return DatabaseSingleton.Instance.userDao.getUserPasswordHash(userId).then((storedPasswordHash) => {
-            //return passwordHash == storedPasswordHash
-        });
     }
 
     getMatch(userId: any, date: any) {
@@ -183,5 +184,17 @@ export class PondService {
 
     getPictureStringParticipant(userId: String) {
         return DatabaseSingleton.Instance.participantDao.getParticipantPictureString(userId);
+    }
+
+////Helper functions
+    hashPassword(password: string) {
+        let hash = 0, i, chr;
+        if (password.length === 0) return hash;
+        for (i = 0; i < password.length; i++) {
+            chr   = password.charCodeAt(i);
+            hash  = ((hash << 5) - hash) + chr;
+            hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
     }
 }

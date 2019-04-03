@@ -6,9 +6,9 @@ var PondService = /** @class */ (function () {
     function PondService() {
     }
     PondService.prototype.createUser = function (userToken, userId, password, userName, userInfo) {
-        //TODO: hash password and store
-        //let passwordHash =
-        return database_1.DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, userName, userInfo);
+        var passwordHash = this.hashPassword(password);
+        console.log("createUser passwordHash", passwordHash);
+        return database_1.DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, passwordHash, userName, userInfo);
     };
     PondService.prototype.updateUserInfo = function (userId, userInfo) {
         return database_1.DatabaseSingleton.Instance.userDao.updateUserInfo(userId, userInfo);
@@ -30,9 +30,10 @@ var PondService = /** @class */ (function () {
     };
     PondService.prototype.loginUser = function (userId, password) {
         //hash password and compare to stored password hash
-        //let passwordHash =
+        var passwordHash = this.hashPassword(password);
         return database_1.DatabaseSingleton.Instance.userDao.getUserPasswordHash(userId).then(function (storedPasswordHash) {
-            //return passwordHash == storedPasswordHash
+            console.log("loginUser comparison", passwordHash == storedPasswordHash);
+            return passwordHash == storedPasswordHash;
         });
     };
     PondService.prototype.getMatch = function (userId, date) {
@@ -163,6 +164,18 @@ var PondService = /** @class */ (function () {
     };
     PondService.prototype.getPictureStringParticipant = function (userId) {
         return database_1.DatabaseSingleton.Instance.participantDao.getParticipantPictureString(userId);
+    };
+    ////Helper functions
+    PondService.prototype.hashPassword = function (password) {
+        var hash = 0, i, chr;
+        if (password.length === 0)
+            return hash;
+        for (i = 0; i < password.length; i++) {
+            chr = password.charCodeAt(i);
+            hash = ((hash << 5) - hash) + chr;
+            hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
     };
     return PondService;
 }());

@@ -8,6 +8,7 @@ var mongoose_1 = require("mongoose");
 exports.user_schema = new mongoose_1.Schema({
     userToken: String,
     userId: String,
+    passwordHash: Number,
     userName: String,
     userInfo: String,
     pictureURL: String,

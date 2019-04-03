@@ -21,11 +21,12 @@ var User_dao = /** @class */ (function (_super) {
     User_dao.prototype.getUser = function (userId, date) {
         return this.execute(function (dbModel) { return dbModel.findOne({ userId: userId }); });
     };
-    User_dao.prototype.updateUser = function (userToken, userId, userName, userInfo) {
+    User_dao.prototype.updateUser = function (userToken, userId, passwordHash, userName, userInfo) {
         return this.execute(function (dbModel) { return dbModel.findOneAndUpdate({
             userId: userId
         }, { $set: { userToken: userToken,
                 userId: userId,
+                passwordHash: passwordHash,
                 userName: userName,
                 userInfo: userInfo
             } }, { upsert: true } /*,
