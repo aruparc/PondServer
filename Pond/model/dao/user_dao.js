@@ -35,6 +35,20 @@ var User_dao = /** @class */ (function (_super) {
         },
         {returnOriginal: false}*/); });
     };
+    User_dao.prototype.updateUserName = function (userId, userName) {
+        return this.execute(function (dbModel) { return dbModel.findOneAndUpdate({
+            userId: userId
+        }, { $set: { userName: userName } }, { upsert: true } /*,
+        function (err, documents) {
+            return { error: err, affected: documents };
+        },
+        {returnOriginal: false}*/); });
+    };
+    User_dao.prototype.getUserName = function (userId) {
+        return this.execute(function (dbModel) { return dbModel.findOne({ userId: userId }); }).then(function (userEntry) {
+            return userEntry.userName;
+        });
+    };
     User_dao.prototype.updateUserInfo = function (userId, userInfo) {
         return this.execute(function (dbModel) { return dbModel.findOneAndUpdate({
             userId: userId

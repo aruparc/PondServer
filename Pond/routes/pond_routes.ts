@@ -12,6 +12,12 @@ router.post('/user', (request, response) => pondController.createUser(request, r
 //Get: return a user's complete entry for a given userId (except passwordHash)
 router.get('/user/entry', (request, response) => pondController.getUserEntry(request, response));
 
+//Put: update a user's name for a given userId
+router.put('/user/name', (request, response) => pondController.updateUserName(request, response));
+
+//Get: return a user's name for a given userId
+router.get('/user/name', (request, response) => pondController.getUserName(request, response));
+
 //Put: update a user's info for a given userId
 router.put('/user/info', (request, response) => pondController.updateUserInfo(request, response));
 

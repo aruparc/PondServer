@@ -28,6 +28,25 @@ export class User_dao extends BaseDao<IAccount>{
         ));
     }
 
+    updateUserName(userId: any, userName: any) {
+        return this.execute((dbModel) => dbModel.findOneAndUpdate({
+                userId: userId
+            },
+            { $set: {userName: userName } },
+            { upsert: true }/*,
+            function (err, documents) {
+                return { error: err, affected: documents };
+            },
+            {returnOriginal: false}*/
+        ));
+    }
+
+    getUserName(userId: any) {
+        return this.execute((dbModel) => dbModel.findOne({userId: userId})).then((userEntry) => {
+            return userEntry.userName;
+        });
+    }
+
     updateUserInfo(userId: any, userInfo: any) {
         return this.execute((dbModel) => dbModel.findOneAndUpdate({
                 userId: userId

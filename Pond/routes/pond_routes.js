@@ -9,6 +9,10 @@ var pondController = new pond_controller_1.PondController();
 router.post('/user', function (request, response) { return pondController.createUser(request, response); });
 //Get: return a user's complete entry for a given userId (except passwordHash)
 router.get('/user/entry', function (request, response) { return pondController.getUserEntry(request, response); });
+//Put: update a user's name for a given userId
+router.put('/user/name', function (request, response) { return pondController.updateUserName(request, response); });
+//Get: return a user's name for a given userId
+router.get('/user/name', function (request, response) { return pondController.getUserName(request, response); });
 //Put: update a user's info for a given userId
 router.put('/user/info', function (request, response) { return pondController.updateUserInfo(request, response); });
 //Get: return a user's info for a given userId

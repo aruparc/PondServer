@@ -49,6 +49,14 @@ export class PondService {
         });
     }
 
+    updateUserName(userId: any, newUserName: any) {
+        return DatabaseSingleton.Instance.userDao.updateUserName(userId, newUserName);
+    }
+
+    getUserName(userId: any) {
+        return DatabaseSingleton.Instance.userDao.getUserName(userId);
+    }
+
     updateUserInfo(userId: any, userInfo: any) {
         return DatabaseSingleton.Instance.userDao.updateUserInfo(userId, userInfo);
     }

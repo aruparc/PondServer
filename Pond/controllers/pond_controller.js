@@ -39,7 +39,7 @@ var PondController = /** @class */ (function () {
         }
         else if (userName === undefined || userName === null) {
             response.statuscode = 400;
-            return response.json(response_1.ApiResponse.Error("Please specify query parameter: userName"));
+            return response.json(response_1.ApiResponse.Error("Please specify query parameter: name"));
         }
         else if (userInfo === undefined || userInfo === null) {
             //response.statuscode = 400;
@@ -57,6 +57,29 @@ var PondController = /** @class */ (function () {
         }
         var userEntryPromise = this.pondService.getUserEntry(userId);
         return PondController.payloadHandler(response, userEntryPromise);
+    };
+    PondController.prototype.updateUserName = function (request, response) {
+        var userId = request.query.userId;
+        var newUserName = request.query.name;
+        if (userId === undefined || userId === null) {
+            response.statuscode = 400;
+            return response.json(response_1.ApiResponse.Error("Please specify query parameter: userId"));
+        }
+        else if (newUserName === undefined || newUserName === null) {
+            response.statuscode = 400;
+            return response.json(response_1.ApiResponse.Error("Please specify query parameter: name"));
+        }
+        var userNamePromise = this.pondService.updateUserName(userId, newUserName);
+        return PondController.payloadHandler(response, userNamePromise);
+    };
+    PondController.prototype.getUserName = function (request, response) {
+        var userId = request.query.userId;
+        if (userId === undefined || userId === null) {
+            response.statuscode = 400;
+            return response.json(response_1.ApiResponse.Error("Please specify query parameter: userId"));
+        }
+        var userNamePromise = this.pondService.getUserName(userId);
+        return PondController.payloadHandler(response, userNamePromise);
     };
     PondController.prototype.updateUserInfo = function (request, response) {
         var userId = request.query.userId;
@@ -150,7 +173,7 @@ var PondController = /** @class */ (function () {
         }
         else if (userName === undefined || userName === null) {
             response.statuscode = 400;
-            return response.json(response_1.ApiResponse.Error("Please specify query parameter: userName"));
+            return response.json(response_1.ApiResponse.Error("Please specify query parameter: name"));
         }
         else if (date === undefined || date === null) {
             response.statuscode = 400;

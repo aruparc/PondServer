@@ -50,7 +50,7 @@ export class PondController {
         }
         else if(userName === undefined || userName === null){
             response.statuscode = 400;
-            return response.json(ApiResponse.Error("Please specify query parameter: userName"));
+            return response.json(ApiResponse.Error("Please specify query parameter: name"));
         }
         else if(userInfo === undefined || userInfo === null){
             //response.statuscode = 400;
@@ -72,6 +72,33 @@ export class PondController {
         let userEntryPromise = this.pondService.getUserEntry(userId);
         return PondController.payloadHandler(response, userEntryPromise);
 
+    }
+
+    updateUserName(request: any, response: any) {
+        let userId = request.query.userId;
+        let newUserName = request.query.name;
+        if(userId === undefined || userId === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: userId"));
+        }
+        else if(newUserName === undefined || newUserName === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: name"));
+        }
+
+        let userNamePromise = this.pondService.updateUserName(userId, newUserName);
+        return PondController.payloadHandler(response, userNamePromise);
+    }
+
+    getUserName(request: any, response: any) {
+        let userId = request.query.userId;
+        if(userId === undefined || userId === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: userId"));
+        }
+
+        let userNamePromise = this.pondService.getUserName(userId);
+        return PondController.payloadHandler(response, userNamePromise);
     }
 
     updateUserInfo(request: any, response: any) {
@@ -186,7 +213,7 @@ export class PondController {
         }
         else if(userName === undefined || userName === null){
             response.statuscode = 400;
-            return response.json(ApiResponse.Error("Please specify query parameter: userName"));
+            return response.json(ApiResponse.Error("Please specify query parameter: name"));
         }
         else if(date === undefined || date === null){
             response.statuscode = 400;
