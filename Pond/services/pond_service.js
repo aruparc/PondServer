@@ -6,9 +6,44 @@ var PondService = /** @class */ (function () {
     function PondService() {
     }
     PondService.prototype.createUser = function (userToken, userId, password, userName, userInfo) {
+        var _this = this;
+        //console.log("createUser passwordHash", passwordHash);
+        //check that userId is unique
+        return database_1.DatabaseSingleton.Instance.userDao.getUser(userId).then(function (existingUserEntry) {
+            if (existingUserEntry) {
+                return "A user with this id already exists... so unless cloning has becoming possible, this request has to be changed.";
+            }
+            else {
+                var passwordHash = _this.hashPassword(password);
+                return database_1.DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, passwordHash, userName, userInfo);
+            }
+        });
+    };
+    PondService.prototype.loginUser = function (userId, password) {
+        //hash password and compare to stored password hash
         var passwordHash = this.hashPassword(password);
-        console.log("createUser passwordHash", passwordHash);
-        return database_1.DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, passwordHash, userName, userInfo);
+        return database_1.DatabaseSingleton.Instance.userDao.getUserPasswordHash(userId).then(function (storedPasswordHash) {
+            //console.log("loginUser comparison", passwordHash == storedPasswordHash);
+            return passwordHash == storedPasswordHash;
+        });
+    };
+    PondService.prototype.getUserEntry = function (userId) {
+        //return complete user entry except passwordHash
+        return database_1.DatabaseSingleton.Instance.userDao.getUser(userId).then(function (existingUserEntry) {
+            if (existingUserEntry) {
+                //const {passwordHash, ...userEntryWithoutPasswordHash} = existingUserEntry;
+                var userEntryWithoutPasswordHash = JSON.parse(JSON.stringify(existingUserEntry));
+                delete userEntryWithoutPasswordHash.passwordHash;
+                delete userEntryWithoutPasswordHash.userToken;
+                delete userEntryWithoutPasswordHash._id;
+                delete userEntryWithoutPasswordHash.__v;
+                console.log("getUserEntry user entry without passwordHash ", userEntryWithoutPasswordHash);
+                return userEntryWithoutPasswordHash;
+            }
+            else {
+                return "A user entry with this id has not been created yet. That should have been the Creator's job on the 8th day but he had enough by then [Pond 1: 34-36].";
+            }
+        });
     };
     PondService.prototype.updateUserInfo = function (userId, userInfo) {
         return database_1.DatabaseSingleton.Instance.userDao.updateUserInfo(userId, userInfo);
@@ -27,14 +62,6 @@ var PondService = /** @class */ (function () {
     };
     PondService.prototype.getPictureString = function (userId) {
         return database_1.DatabaseSingleton.Instance.userDao.getUserPictureString(userId);
-    };
-    PondService.prototype.loginUser = function (userId, password) {
-        //hash password and compare to stored password hash
-        var passwordHash = this.hashPassword(password);
-        return database_1.DatabaseSingleton.Instance.userDao.getUserPasswordHash(userId).then(function (storedPasswordHash) {
-            console.log("loginUser comparison", passwordHash == storedPasswordHash);
-            return passwordHash == storedPasswordHash;
-        });
     };
     PondService.prototype.getMatch = function (userId, date) {
         return database_1.DatabaseSingleton.Instance.matchDao.getMatch(userId, date).then(function (matchEntry) {

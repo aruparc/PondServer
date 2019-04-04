@@ -5,8 +5,10 @@ var router = express.Router();
 var pond_controller_1 = require("../controllers/pond_controller");
 var pondController = new pond_controller_1.PondController();
 // REPORTS ROUTES defs
-//Put: create a new user entry for a given userId (along more data attributes)
-router.put('/user', function (request, response) { return pondController.createUser(request, response); });
+//Post: create a new user entry for a given userId (along more data attributes), userId has to be unique
+router.post('/user', function (request, response) { return pondController.createUser(request, response); });
+//Get: return a user's complete entry for a given userId (except passwordHash)
+router.get('/user/entry', function (request, response) { return pondController.getUserEntry(request, response); });
 //Put: update a user's info for a given userId
 router.put('/user/info', function (request, response) { return pondController.updateUserInfo(request, response); });
 //Get: return a user's info for a given userId

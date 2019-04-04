@@ -8,9 +8,17 @@ export class PondService {
     }
 
     createUser(userToken: any, userId: any, password: string, userName: any, userInfo: any) {
-        let passwordHash = this.hashPassword(password);
         //console.log("createUser passwordHash", passwordHash);
-        return DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, passwordHash, userName, userInfo);
+        //check that userId is unique
+        return DatabaseSingleton.Instance.userDao.getUser(userId).then((existingUserEntry) => {
+            if(existingUserEntry){
+                return "A user with this id already exists... so unless cloning has becoming possible, this request has to be changed.";
+            }
+            else{
+                let passwordHash = this.hashPassword(password);
+                return DatabaseSingleton.Instance.userDao.updateUser(userToken, userId, passwordHash, userName, userInfo);
+            }
+        });
     }
 
     loginUser(userId: any, password: string) {
@@ -19,6 +27,25 @@ export class PondService {
         return DatabaseSingleton.Instance.userDao.getUserPasswordHash(userId).then((storedPasswordHash) => {
             //console.log("loginUser comparison", passwordHash == storedPasswordHash);
             return passwordHash == storedPasswordHash
+        });
+    }
+
+    getUserEntry(userId: any) {
+        //return complete user entry except passwordHash
+        return DatabaseSingleton.Instance.userDao.getUser(userId).then((existingUserEntry) => {
+            if(existingUserEntry){
+                //copy of JSON object needed to delete keys
+                let userEntryWithoutPasswordHash = JSON.parse(JSON.stringify(existingUserEntry));
+                delete userEntryWithoutPasswordHash.passwordHash;
+                delete userEntryWithoutPasswordHash.userToken;
+                delete userEntryWithoutPasswordHash._id;
+                delete userEntryWithoutPasswordHash.__v;
+                //console.log("getUserEntry user entry without passwordHash ", userEntryWithoutPasswordHash);
+                return userEntryWithoutPasswordHash;
+            }
+            else{
+                return "A user entry with this id has not been created yet. That should have been the Creator's job on the 8th day but he had enough by then [Pond 1: 34-36].";
+            }
         });
     }
 

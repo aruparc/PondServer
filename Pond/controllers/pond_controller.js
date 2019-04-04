@@ -49,6 +49,15 @@ var PondController = /** @class */ (function () {
         var userPromise = this.pondService.createUser(userToken, userId, password, userName, userInfo);
         return PondController.payloadHandler(response, userPromise);
     };
+    PondController.prototype.getUserEntry = function (request, response) {
+        var userId = request.query.userId;
+        if (userId === undefined || userId === null) {
+            response.statuscode = 400;
+            return response.json(response_1.ApiResponse.Error("Please specify query parameter: userId"));
+        }
+        var userEntryPromise = this.pondService.getUserEntry(userId);
+        return PondController.payloadHandler(response, userEntryPromise);
+    };
     PondController.prototype.updateUserInfo = function (request, response) {
         var userId = request.query.userId;
         var userInfo = request.query.info;

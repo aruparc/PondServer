@@ -6,7 +6,7 @@ import IAccount = CommonInterfaces.IAccount;
 // SCHEMA
 export class User_dao extends BaseDao<IAccount>{
 
-    getUser(userId: any, date: any) {
+    getUser(userId: any) {
         return this.execute((dbModel) => dbModel.findOne({userId: userId}));
     }
 

@@ -18,7 +18,7 @@ var User_dao = /** @class */ (function (_super) {
     function User_dao() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    User_dao.prototype.getUser = function (userId, date) {
+    User_dao.prototype.getUser = function (userId) {
         return this.execute(function (dbModel) { return dbModel.findOne({ userId: userId }); });
     };
     User_dao.prototype.updateUser = function (userToken, userId, passwordHash, userName, userInfo) {

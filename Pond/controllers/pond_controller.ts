@@ -62,6 +62,18 @@ export class PondController {
         return PondController.payloadHandler(response, userPromise);
     }
 
+    getUserEntry(request: any, response: any) {
+        let userId = request.query.userId;
+        if(userId === undefined || userId === null){
+            response.statuscode = 400;
+            return response.json(ApiResponse.Error("Please specify query parameter: userId"));
+        }
+
+        let userEntryPromise = this.pondService.getUserEntry(userId);
+        return PondController.payloadHandler(response, userEntryPromise);
+
+    }
+
     updateUserInfo(request: any, response: any) {
         let userId = request.query.userId;
         let userInfo = request.query.info;

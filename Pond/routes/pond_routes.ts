@@ -6,8 +6,11 @@ const pondController: PondController = new PondController();
 
 
 // REPORTS ROUTES defs
-//Put: create a new user entry for a given userId (along more data attributes)
-router.put('/user', (request, response) => pondController.createUser(request, response));
+//Post: create a new user entry for a given userId (along more data attributes), userId has to be unique
+router.post('/user', (request, response) => pondController.createUser(request, response));
+
+//Get: return a user's complete entry for a given userId (except passwordHash)
+router.get('/user/entry', (request, response) => pondController.getUserEntry(request, response));
 
 //Put: update a user's info for a given userId
 router.put('/user/info', (request, response) => pondController.updateUserInfo(request, response));
