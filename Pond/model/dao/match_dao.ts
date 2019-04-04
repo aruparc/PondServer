@@ -22,6 +22,7 @@ export class Match_dao extends BaseDao<IHub>{
                     location: location,
                     p1Name: participantEntry.userName,
                     p2Name: otherParticipantEntry.userName,
+                    p1ArrivalStatus: "On the Way to Meeting You!",
                     p2ArrivalStatus: "On the Way to Meeting You!"} },
             { upsert: true }/*,
             function (err, documents) {
@@ -31,7 +32,21 @@ export class Match_dao extends BaseDao<IHub>{
         ));
     }
 
-    updateMatchStatus(userId: any, date: any, status: string) {
+    updateMatchStatusP1(userId: any, date: any, status: string) {
+        return this.execute((dbModel) => dbModel.findOneAndUpdate({
+                p1: userId,
+                date: date
+            },
+            { $set: { p1ArrivalStatus: status} },
+            { upsert: true }/*,
+            function (err, documents) {
+                return { error: err, affected: documents };
+            },
+            {returnOriginal: false}*/
+        ));
+    }
+
+    updateMatchStatusP2(userId: any, date: any, status: string) {
         return this.execute((dbModel) => dbModel.findOneAndUpdate({
                 p2: userId,
                 date: date

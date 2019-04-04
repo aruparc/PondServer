@@ -12,6 +12,7 @@ export const match_schema: Schema = new Schema({
     location: String,
     p1Name: String,
     p2Name: String,
+    p1ArrivalStatus: String,
     p2ArrivalStatus: String
 }, {
     //collection: process.env.MongoDbCollectionAccount,

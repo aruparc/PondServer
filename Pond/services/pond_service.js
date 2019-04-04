@@ -96,7 +96,9 @@ var PondService = /** @class */ (function () {
         });
     };
     PondService.prototype.updateMatchStatus = function (userId, date, status) {
-        return database_1.DatabaseSingleton.Instance.matchDao.updateMatchStatus(userId, date, status);
+        return database_1.DatabaseSingleton.Instance.matchDao.updateMatchStatusP2(userId, date, status).then(function (matchStatusUpdated) {
+            return database_1.DatabaseSingleton.Instance.matchDao.updateMatchStatusP1(userId, date, status);
+        });
     };
     PondService.prototype.createParticipant = function (userToken, userId, userName, date, time) {
         return database_1.DatabaseSingleton.Instance.participantDao.updateParticipant(userToken, userId, userName, date, time, false);

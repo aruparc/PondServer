@@ -13,6 +13,7 @@ exports.match_schema = new mongoose_1.Schema({
     location: String,
     p1Name: String,
     p2Name: String,
+    p1ArrivalStatus: String,
     p2ArrivalStatus: String
 }, {
     //collection: process.env.MongoDbCollectionAccount,
